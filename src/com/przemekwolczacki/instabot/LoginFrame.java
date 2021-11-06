@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Login{
+public class LoginFrame {
+    public static JFrame loginFrame;
+
     public JPasswordField passwordField;
     public JTextField loginField;
     public JPanel loginPanel;
@@ -15,22 +17,26 @@ public class Login{
     private JLabel passwordLabel;
     private JLabel loginLabel;
 
-    public Login() {
-        initiationFrame();
+    public LoginFrame() {
+        InitializeFrame();
 
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = getLoginField();
-                String password = getPasswordField();
+                String username = GetLoginField();
+                String password = GetPasswordField();
 
-                Chrome.loginToInstagram(username, password);
+                try {
+                    Chrome.LoginToInstagram(username, password);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
 
-    public void  initiationFrame(){
-        JFrame loginFrame = new JFrame("Login Panel");
+    public void InitializeFrame(){
+        loginFrame = new JFrame("Login Panel");
         loginFrame.setContentPane(loginPanel);
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loginFrame.setSize(new Dimension(400,300));
@@ -38,11 +44,16 @@ public class Login{
         loginFrame.setVisible(true);
     }
 
-    public String getLoginField(){
+    public String GetLoginField(){
         return loginField.getText();
     }
 
-    public String getPasswordField(){
+    public String GetPasswordField(){
         return new String(passwordField.getPassword());
+    }
+
+    public static void Close(){
+        loginFrame.setVisible(false);
+        loginFrame.dispose();
     }
 }
