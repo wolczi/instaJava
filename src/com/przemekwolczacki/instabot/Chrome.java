@@ -57,17 +57,16 @@ public final class Chrome {
         }
         else
         {
-            LoginFrame.Close();
+            LoginPanelFrame.Close();
 
             driver.findElement(By.xpath("//button[normalize-space()='Nie teraz']")).click(); TimeUnit.SECONDS.sleep(3);
             driver.findElement(By.xpath("//*[text()='Nie teraz']")).click();
 
-            // Form2 form2 = new Form2();
-            // Form2.ShowDialog();
+            Bot.DisplayUserPanel();
         }
     }
 
-    public static void ClearLoginFieldsOnPage(WebElement loginBox, WebElement passwordBox) throws InterruptedException {
+    private static void ClearLoginFieldsOnPage(WebElement loginBox, WebElement passwordBox) throws InterruptedException {
         while (!loginBox.getAttribute("value").equals("")) loginBox.sendKeys(Keys.BACK_SPACE); TimeUnit.SECONDS.sleep(2);
         while (!passwordBox.getAttribute("value").equals("")) passwordBox.sendKeys(Keys.BACK_SPACE);
     }

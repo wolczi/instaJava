@@ -6,6 +6,6 @@ public class Main {
         Chrome chrome = new Chrome();
         chrome.GoToInstagramPage();
 
-        LoginFrame frame = new LoginFrame();
+        Bot bot = new Bot();
     }
 }
