@@ -1,8 +1,10 @@
 package com.przemekwolczacki.instabot;
 
+import java.sql.SQLException;
+
 public final class Bot {
 
-    public Bot(){
+    public Bot() {
         Start();
     }
 
@@ -10,7 +12,7 @@ public final class Bot {
         LoginPanelFrame app = new LoginPanelFrame();
     }
 
-    public static void DisplayUserPanel(){
+    public static void DisplayUserPanel() throws SQLException {
         UserPanelFrame app = new UserPanelFrame();
     }
 }

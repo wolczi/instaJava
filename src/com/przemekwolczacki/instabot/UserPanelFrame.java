@@ -3,6 +3,7 @@ package com.przemekwolczacki.instabot;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class UserPanelFrame {
     public static JFrame userPanelFrame;
@@ -22,8 +23,9 @@ public class UserPanelFrame {
     private JLabel infoRemoveLabel1;
     private JLabel infoRemoveLabel2;
     private JLabel infoRemoveLabel3;
+    private JLabel infoPoolLabel;
 
-    public UserPanelFrame(){
+    public UserPanelFrame() throws SQLException {
         userPanelFrame = new JFrame("instaJava / Panel Użytkownika");
         userPanelFrame.setContentPane(userPanel);
         userPanelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,5 +36,7 @@ public class UserPanelFrame {
         Border border = BorderFactory.createLineBorder(Color.BLACK);
         eventLogArea.setBorder(BorderFactory.createCompoundBorder(border,
                 BorderFactory.createEmptyBorder(10, 0,0,0)));
+
+        infoPoolLabel.setText("Liczba kont w bazie (nieodwiedzonych): " + Database.checkPoolSize());
     }
 }

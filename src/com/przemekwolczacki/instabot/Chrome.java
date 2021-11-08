@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import javax.swing.*;
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 public final class Chrome {
@@ -31,7 +32,7 @@ public final class Chrome {
         driver.findElement(By.xpath("//*[text()='Akceptuję wszystko']")).click();
     }
 
-    public static void LoginToInstagram(String username, String password) throws InterruptedException {
+    public static void LoginToInstagram(String username, String password) throws InterruptedException, SQLException {
         WebElement loginBox = driver.findElement(By.xpath("//input[@name='username']"));
         loginBox.click();
         loginBox.sendKeys(username); TimeUnit.SECONDS.sleep(2);
@@ -45,7 +46,7 @@ public final class Chrome {
         LoginVerification(loginBox, passwordBox);
     }
 
-    private static void LoginVerification(WebElement loginBox, WebElement passwordBox) throws InterruptedException {
+    private static void LoginVerification(WebElement loginBox, WebElement passwordBox) throws InterruptedException, SQLException {
         TimeUnit.SECONDS.sleep(10);
 
         if (driver.getCurrentUrl().equals("https://www.instagram.com/"))
@@ -62,6 +63,7 @@ public final class Chrome {
             driver.findElement(By.xpath("//button[normalize-space()='Nie teraz']")).click(); TimeUnit.SECONDS.sleep(3);
             driver.findElement(By.xpath("//*[text()='Nie teraz']")).click();
 
+            Database db = new Database();
             Bot.DisplayUserPanel();
         }
     }
