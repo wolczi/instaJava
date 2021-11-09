@@ -63,7 +63,6 @@ public final class Chrome {
             driver.findElement(By.xpath("//button[normalize-space()='Nie teraz']")).click(); TimeUnit.SECONDS.sleep(3);
             driver.findElement(By.xpath("//*[text()='Nie teraz']")).click();
 
-            Database db = new Database();
             Bot.DisplayUserPanel();
         }
     }

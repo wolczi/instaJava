@@ -26,6 +26,17 @@ public class UserPanelFrame {
     private JLabel infoPoolLabel;
 
     public UserPanelFrame() throws SQLException {
+        InitializeFrame();
+
+        Database db = new Database();
+        infoPoolLabel.setText("Liczba kont w bazie (nieodwiedzonych): " + Database.countProfilesInPool());
+
+        int[] removeInfo = Database.countObservationsToRemove();
+        infoRemoveLabel2.setText("ogólnie: " + removeInfo[0]);
+        infoRemoveLabel3.setText("dłużej niż trzy dni: " + removeInfo[1]);
+    }
+
+    public void InitializeFrame(){
         userPanelFrame = new JFrame("instaJava / Panel Użytkownika");
         userPanelFrame.setContentPane(userPanel);
         userPanelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +47,5 @@ public class UserPanelFrame {
         Border border = BorderFactory.createLineBorder(Color.BLACK);
         eventLogArea.setBorder(BorderFactory.createCompoundBorder(border,
                 BorderFactory.createEmptyBorder(10, 0,0,0)));
-
-        infoPoolLabel.setText("Liczba kont w bazie (nieodwiedzonych): " + Database.checkPoolSize());
     }
 }
