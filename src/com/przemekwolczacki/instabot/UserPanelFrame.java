@@ -25,15 +25,23 @@ public class UserPanelFrame {
     private JLabel infoRemoveLabel3;
     private JLabel infoPoolLabel;
 
+    int[] statCounters;
+
     public UserPanelFrame() throws SQLException {
         InitializeFrame();
 
         Database db = new Database();
-        infoPoolLabel.setText("Liczba kont w bazie (nieodwiedzonych): " + Database.countProfilesInPool());
+        infoPoolLabel.setText("Liczba kont w bazie (nieodwiedzonych): " + Database.CountProfilesInPool());
 
-        int[] removeInfo = Database.countObservationsToRemove();
-        infoRemoveLabel2.setText("ogólnie: " + removeInfo[0]);
-        infoRemoveLabel3.setText("dłużej niż trzy dni: " + removeInfo[1]);
+        statCounters = Database.CountObservationsToRemove();
+        infoRemoveLabel2.setText("ogólnie: " + statCounters[0]);
+        infoRemoveLabel3.setText("dłużej niż trzy dni: " + statCounters[1]);
+
+        Database.RemoveOtherDaysStats();
+
+        statCounters = Database.CheckTodayStats();
+        infoFollowsLabel.setText("Zaobserwowano: " + statCounters[0]);
+        infoLikesLabel.setText("Polubiono: " + statCounters[1]);
     }
 
     public void InitializeFrame(){
