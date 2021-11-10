@@ -3,6 +3,8 @@ package com.przemekwolczacki.instabot;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class UserPanelFrame {
@@ -13,7 +15,6 @@ public class UserPanelFrame {
     private JTextField linkToProfileField;
     private JTextField hashtagField;
     private JButton saveToDatabaseButton;
-    private JButton stopButton;
     private JButton removeFollowsButton;
     private JButton workWithHashtagButton;
     private JButton workWithAccountsPoolButton;
@@ -52,6 +53,23 @@ public class UserPanelFrame {
                 ex.printStackTrace();
             }
         });
+
+        removeFollowsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Database.moreThan3Days > 0) {
+                    try {
+                        ClearObservationList();
+                        SetInfoRemoveLabels();
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                else {
+                    eventLogArea.append("Aktualnie nie obserwujesz nikogo dłużej niż 3 dni \n");
+                }
+            }
+        });
     }
 
     public void InitializeFrame(){
@@ -88,6 +106,13 @@ public class UserPanelFrame {
 
         Chrome.GoToURL(url);
         Chrome.DownloadSomeonesFollowers(eventLogArea);
+    }
+
+    public void ClearObservationList() throws SQLException {
+        url = "https://www.instagram.com/przemek_wolczi/";
+
+        Chrome.GoToURL(url);
+        Chrome.DeleteTooLongObservations(eventLogArea);
     }
 
 }

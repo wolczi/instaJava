@@ -23,6 +23,7 @@ public final class Database {
     public static int lessThan3Days = 0;
 
     public static int[] toReturn;
+    public static long diffInHours;
 
     public Database(){
         try {
@@ -56,7 +57,7 @@ public final class Database {
 
         while(rs.next()){
             LocalDateTime old_date = LocalDateTime.parse(rs.getString("date"), formatter);
-            long diffInHours = Math.abs(java.time.Duration.between(now_date, old_date).toHours());
+            diffInHours = Math.abs(java.time.Duration.between(now_date, old_date).toHours());
 
             if (diffInHours >= 72) moreThan3Days += 1;
             else lessThan3Days += 1;
@@ -111,8 +112,52 @@ public final class Database {
         eventLogArea.append("Coś poszło nie tak. Nie można dodać do puli \n");
     }
 
+    public static void StartDeleteObservationsMessage(JTextArea eventLogArea){
+        information = "[" + TimeOfDayFormatter() + "] Rozpoczęto usuwanie osób obserwowanych dłużej niż 3 dni \n";
+        eventLogArea.append(information);
+    }
+
+    public static void EndDeleteObservationsMessage(JTextArea eventLogArea){
+        information = "[" + TimeOfDayFormatter() + "] Zakończono usuwanie zbędnych obserwacji \n";
+        eventLogArea.append(information);
+    }
+
     public static void AddProfileToPool(String user, String href) throws SQLException {
         stmt.execute("INSERT INTO pool(nick, href) VALUES('" + user + "', '" + href + "')");
+    }
+
+    public static void AddStatFollowOrLike(String actionType, String nick) throws SQLException {
+        stmt.execute("insert into statistics(id, user, actionType, dayAndMonth) values(NULL, '" + nick + "', '" + actionType + "', '" + DayOfMonthFormatter() + "')");
+    }
+
+    public static void DeleteFromListOfFollowingInDb(String user) throws SQLException {
+        stmt.execute("DELETE FROM followed WHERE nick='" + user + "'");
+    }
+
+    public static int CheckIfUserExists(String user) throws SQLException {
+        rs = stmt.executeQuery("SELECT count(1) FROM followed WHERE nick='" + user + "'");
+
+        rs.next();
+        toReturn[0] = rs.getInt("count(1)");
+        rs.close();
+
+        return toReturn[0];
+    }
+
+    public static long CheckDurationOfObservation(String user) throws SQLException {
+        rs = stmt.executeQuery("SELECT * FROM followed WHERE nick='" + user + "'");
+
+        rs.next();
+
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        now_date = LocalDateTime.now();
+
+        LocalDateTime old_date = LocalDateTime.parse(rs.getString("date"), formatter);
+        diffInHours = Math.abs(java.time.Duration.between(now_date, old_date).toHours());
+
+        rs.close();
+
+        return diffInHours;
     }
 
 
