@@ -1,5 +1,6 @@
 package com.przemekwolczacki.instabot;
 
+import javax.swing.*;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,6 +12,8 @@ public final class Database {
 
     public static LocalDateTime now_date;
     public static DateTimeFormatter formatter;
+
+    public static String information;
 
     public static int likesCounter;
     public static int followsCounter;
@@ -69,11 +72,7 @@ public final class Database {
     }
 
     public static void RemoveOtherDaysStats() throws SQLException {
-        formatter = DateTimeFormatter.ofPattern("MM-dd");
-        now_date = LocalDateTime.now();
-        String dayAndMonth = now_date.format(formatter);
-
-        stmt.execute("DELETE FROM statistics WHERE dayAndMonth!='" + dayAndMonth + "'");
+        stmt.execute("DELETE FROM statistics WHERE dayAndMonth!='" + DayOfMonthFormatter() + "'");
     }
 
     public static int[] CheckTodayStats() throws SQLException {
@@ -93,5 +92,43 @@ public final class Database {
 
         return toReturn;
     }
+
+    public static void AddingToDbMessage(JTextArea eventLogArea){
+        information = "[" + TimeOfDayFormatter() + "] Rozpoczęto dodawanie linków do profili w bazie\n";
+        eventLogArea.append(information);
+    }
+
+    public static void EndOfAddingToDbMessage(JTextArea eventLogArea){
+        information = "[" + TimeOfDayFormatter() + "] Zakończono dodawanie linków do profili w bazie \n";
+        eventLogArea.append(information);
+    }
+
+    public static void ReachedUserLimitInDbMessage(JTextArea eventLogArea){
+        eventLogArea.append("Limit użytkowników w bazie przekroczony \n");
+    }
+
+    public static void SomethingWentWrongMessage(JTextArea eventLogArea){
+        eventLogArea.append("Coś poszło nie tak. Nie można dodać do puli \n");
+    }
+
+    public static void AddProfileToPool(String user, String href) throws SQLException {
+        stmt.execute("INSERT INTO pool(nick, href) VALUES('" + user + "', '" + href + "')");
+    }
+
+
+    public static String TimeOfDayFormatter(){
+        formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        now_date = LocalDateTime.now();
+
+        return now_date.format(formatter);
+    }
+
+    public static String DayOfMonthFormatter(){
+        formatter = DateTimeFormatter.ofPattern("MM-dd");
+        now_date = LocalDateTime.now();
+
+        return now_date.format(formatter);
+    }
+
 
 }

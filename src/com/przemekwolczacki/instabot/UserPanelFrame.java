@@ -25,23 +25,33 @@ public class UserPanelFrame {
     private JLabel infoRemoveLabel3;
     private JLabel infoPoolLabel;
 
+    public String url;
+
     int[] statCounters;
 
     public UserPanelFrame() throws SQLException {
         InitializeFrame();
 
         Database db = new Database();
-        infoPoolLabel.setText("Liczba kont w bazie (nieodwiedzonych): " + Database.CountProfilesInPool());
 
-        statCounters = Database.CountObservationsToRemove();
-        infoRemoveLabel2.setText("ogólnie: " + statCounters[0]);
-        infoRemoveLabel3.setText("dłużej niż trzy dni: " + statCounters[1]);
+        SetInfoPoolLabel();
+        SetInfoRemoveLabels();
+        SetInfoFollowsLikesLabels();
 
         Database.RemoveOtherDaysStats();
 
-        statCounters = Database.CheckTodayStats();
-        infoFollowsLabel.setText("Zaobserwowano: " + statCounters[0]);
-        infoLikesLabel.setText("Polubiono: " + statCounters[1]);
+        saveToDatabaseButton.addActionListener(e -> {
+            try {
+                Database.AddingToDbMessage(eventLogArea);
+
+                AddToPool();
+                SetInfoPoolLabel();
+
+                Database.EndOfAddingToDbMessage(eventLogArea);
+            } catch (InterruptedException | SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     public void InitializeFrame(){
@@ -56,4 +66,28 @@ public class UserPanelFrame {
         eventLogArea.setBorder(BorderFactory.createCompoundBorder(border,
                 BorderFactory.createEmptyBorder(10, 0,0,0)));
     }
+
+    public void SetInfoFollowsLikesLabels() throws SQLException {
+        statCounters = Database.CheckTodayStats();
+        infoFollowsLabel.setText("Zaobserwowano: " + statCounters[0]);
+        infoLikesLabel.setText("Polubiono: " + statCounters[1]);
+    }
+
+    public void SetInfoRemoveLabels() throws SQLException {
+        statCounters = Database.CountObservationsToRemove();
+        infoRemoveLabel2.setText("ogólnie: " + statCounters[0]);
+        infoRemoveLabel3.setText("dłużej niż trzy dni: " + statCounters[1]);
+    }
+
+    public void SetInfoPoolLabel() throws SQLException {
+        infoPoolLabel.setText("Liczba kont w bazie (nieodwiedzonych): " + Database.CountProfilesInPool());
+    }
+
+    public void AddToPool() throws InterruptedException, SQLException {
+        url = linkToProfileField.getText();
+
+        Chrome.GoToURL(url);
+        Chrome.DownloadSomeonesFollowers(eventLogArea);
+    }
+
 }
