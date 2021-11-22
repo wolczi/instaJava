@@ -76,4 +76,22 @@ public class EventLogger {
 
         eventLogArea.update(eventLogArea.getGraphics());
     }
+
+    public static void CancelWorkWithPoolMessage(JTextArea eventLogArea){
+        eventLogArea.append("xxxxxxxxx [" + DateModeler.GetTimeOfDay() + "] Przerwano obserwowanie/lajkowanie użytkowników \n");
+
+        eventLogArea.update(eventLogArea.getGraphics());
+    }
+
+    public static void CancelRemoveFollowsMessage(JTextArea eventLogArea){
+        eventLogArea.append("xxxxxxxxx [" + DateModeler.GetTimeOfDay() + "] Przerwano usuwanie obserwacji dłuższych niż 3 dni\n");
+
+        eventLogArea.update(eventLogArea.getGraphics());
+    }
+
+    public static void CancelAddToPoolMessage(JTextArea eventLogArea){
+        eventLogArea.append("xxxxxxxxx [" + DateModeler.GetTimeOfDay() + "] Przerwano dodawanie linków do kont do puli\n");
+
+        eventLogArea.update(eventLogArea.getGraphics());
+    }
 }

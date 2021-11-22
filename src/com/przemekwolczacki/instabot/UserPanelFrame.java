@@ -32,6 +32,10 @@ public class UserPanelFrame {
 
     public String url;
 
+    public SwingWorker sw1 = null;
+    public SwingWorker sw2 = null;
+    public SwingWorker sw3 = null;
+
     int[] statCounters;
     int followsCounter;
 
@@ -60,7 +64,7 @@ public class UserPanelFrame {
                 BorderFactory.createEmptyBorder(10, 0,0,0)));
 
         saveToDatabaseButton.addActionListener(e -> {
-            SwingWorker sw1 = new SwingWorker() {
+            sw1 = new SwingWorker() {
                 @Override
                 protected Object doInBackground() {
                     try {
@@ -73,7 +77,7 @@ public class UserPanelFrame {
                     }
                     EventLogger.EndOfAddingToDbMessage(eventLogArea);
 
-                    return null;
+                    return 1;
                 }
             };
 
@@ -81,32 +85,33 @@ public class UserPanelFrame {
         });
 
         removeFollowsButton.addActionListener(e -> {
-            SwingWorker sw2 = new SwingWorker() {
+            sw2 = new SwingWorker() {
                 @Override
                 protected Object doInBackground() {
-                    if (Database.moreThan3Days > 0) {
-                        try {
-                            EventLogger.StartDeleteObservationsMessage(eventLogArea);
+                    try {
+                        if (Database.moreThan3Days > 0) {
 
-                            ClearObservationList();
-                            SetInfoRemoveLabels();
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
+                                EventLogger.StartDeleteObservationsMessage(eventLogArea);
+
+                                ClearObservationList();
+                                SetInfoRemoveLabels();
                         }
-                    }
-                    else {
-                        EventLogger.NoOneToRemoveMessage(eventLogArea);
+                        else {
+                            EventLogger.NoOneToRemoveMessage(eventLogArea);
+                        }
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
                     }
                     EventLogger.EndDeleteObservationsMessage(eventLogArea);
 
-                    return null;
+                    return 1;
                 }
             };
 
             sw2.execute();
         });
         workWithAccountsPoolButton.addActionListener(e -> {
-            SwingWorker sw3 = new SwingWorker() {
+            sw3 = new SwingWorker() {
                 @Override
                 protected Object doInBackground() {
                     try {
@@ -127,11 +132,35 @@ public class UserPanelFrame {
                     }
                     EventLogger.EndFollowLikePoolMessage(eventLogArea, 2);
 
-                    return null;
+                    return 1;
                 }
             };
 
             sw3.execute();
+        });
+
+        stopButton.addActionListener(e -> {
+            try {
+                sw1.cancel(true);
+                sw1 = null;
+                SetInfoPoolLabel();
+                EventLogger.CancelAddToPoolMessage(eventLogArea);
+            } catch(Exception c){}
+
+            try {
+                sw2.cancel(true);
+                sw2 = null;
+                SetInfoRemoveLabels();
+                EventLogger.CancelRemoveFollowsMessage(eventLogArea);
+            } catch(Exception c){}
+
+            try {
+                sw3.cancel(true);
+                sw3 = null;
+                SetInfoFollowsLabel();
+                SetInfoLikesLabel();
+                EventLogger.CancelWorkWithPoolMessage(eventLogArea);
+            } catch(Exception c){}
         });
     }
 
@@ -177,46 +206,40 @@ public class UserPanelFrame {
 
         Chrome.GoToURL(url);
 
-        try {
-            double someonesFollowers = Chrome.CountSomeonesFollowers();
+        double someonesFollowers = Chrome.CountSomeonesFollowers();
 
-            Chrome.driver.findElement(By.xpath("/html/body/div[1]/section/main/div/header/section/ul/li[2]/a")).click();
-            Bot.ActionPause(3);
+        Chrome.driver.findElement(By.xpath("/html/body/div[1]/section/main/div/header/section/ul/li[2]/a")).click();
+        Bot.ActionPause(3);
 
-            var fBody = Chrome.driver.findElement(By.xpath("//div[@class='isgrP']"));
-            Bot.ActionPause(3);
+        var fBody = Chrome.driver.findElement(By.xpath("//div[@class='isgrP']"));
+        Bot.ActionPause(3);
 
-            double scroll = 0.0;
-            while (scroll < someonesFollowers) {
-                Chrome.js.executeScript("arguments[0].scrollTop = arguments[0].scrollHeight;", fBody);
-                Bot.ActionPause(5);
-                scroll += 1.0;
-            }
-
-            var buttons = Chrome.driver.findElements(By.className("sqdOP"));
-            var users = Chrome.driver.findElements(By.className("FPmhX"));
-
-            int i = 0;
-            for (WebElement user : users) {
-                try {
-                    if (Database.CountProfilesInPool() < 1000) {
-                        if (buttons.get(i).getText().equals("Obserwuj")) {
-                            Database.AddProfileToPool(user.getText(), user.getAttribute("href"));
-                        }
-                    } else {
-                        EventLogger.ReachedUserLimitInDbMessage(eventLogArea);
-                        break;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                i = i + 1;
-            }
+        double scroll = 0.0;
+        while (scroll < someonesFollowers) {
+            Chrome.js.executeScript("arguments[0].scrollTop = arguments[0].scrollHeight;", fBody);
+            Bot.ActionPause(5);
+            scroll += 1.0;
         }
-        catch (Exception e) {
-            e.printStackTrace();
-            EventLogger.SomethingWentWrongMessage(eventLogArea);
+
+        var buttons = Chrome.driver.findElements(By.className("sqdOP"));
+        var users = Chrome.driver.findElements(By.className("FPmhX"));
+
+        int i = 0;
+        for (WebElement user : users) {
+            try {
+                if (Database.CountProfilesInPool() < 1000) {
+                    if (buttons.get(i).getText().equals("Obserwuj")) {
+                        Database.AddProfileToPool(user.getText(), user.getAttribute("href"));
+                    }
+                } else {
+                    EventLogger.ReachedUserLimitInDbMessage(eventLogArea);
+                    break;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            i = i + 1;
         }
     }
 
