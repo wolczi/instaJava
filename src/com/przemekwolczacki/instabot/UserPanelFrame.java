@@ -16,10 +16,8 @@ public class UserPanelFrame {
 
     private JTextArea eventLogArea;
     private JTextField linkToProfileField;
-    private JTextField hashtagField;
     private JButton saveToDatabaseButton;
     private JButton removeFollowsButton;
-    private JButton workWithHashtagButton;
     private JButton workWithAccountsPoolButton;
     private JLabel statsLabel;
     public JLabel infoLikesLabel;

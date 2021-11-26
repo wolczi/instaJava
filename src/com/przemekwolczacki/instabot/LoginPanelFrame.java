@@ -86,7 +86,7 @@ public class LoginPanelFrame {
     }
 
     private void LoginVerification(WebElement loginBox, WebElement passwordBox) throws SQLException {
-        Bot.ActionPause(5);
+        Bot.ActionPause(10);
 
         try{
             Chrome.driver.findElement(By.xpath("//input[@name='username']"));
