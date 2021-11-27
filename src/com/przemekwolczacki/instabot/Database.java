@@ -3,6 +3,7 @@ package com.przemekwolczacki.instabot;
 import javax.swing.*;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public final class Database {
 
@@ -73,6 +74,21 @@ public final class Database {
         stmt.execute("DELETE FROM statistics WHERE dayAndMonth!='" + DateModeler.GetDayAndMonth() + "'");
     }
 
+    public static ResultSet GetUsersFromPool() throws SQLException {
+        return stmt_pom.executeQuery("SELECT * FROM pool");
+    }
+
+    public static void DeleteUserFromPool(String user) throws SQLException {
+        stmt.execute( "DELETE FROM pool WHERE nick='" + user + "'");
+    }
+
+    public static int HasAccountEverBeenVisited(String user) throws SQLException {
+        rs = stmt.executeQuery("SELECT count(1) FROM dontfollow WHERE nick='" + user + "'");
+        rs.next();
+
+        return rs.getInt("count(1)");
+    }
+
     public static int CheckTodayLikes() throws SQLException {
         rs = stmt.executeQuery("SELECT count(*) FROM statistics WHERE actionType='like'");
         rs.next();
@@ -100,6 +116,11 @@ public final class Database {
     public static void AddStatFollowOrLike(String actionType, String nick) throws SQLException {
         stmt.execute("INSERT INTO statistics(id, user, actionType, dayAndMonth) VALUES(NULL, '" +
                 nick + "', '" + actionType + "', '" + DateModeler.GetDayAndMonth() + "')");
+
+        if(actionType.equals("follow")){
+            Database.stmt.execute("INSERT INTO followed(nick, date) VALUES('" + nick + "', '" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "')");
+            Database.stmt.execute("INSERT INTO dontfollow(id, nick) VALUES(NULL, '" + nick + "')");
+        }
     }
 
     public static void DeleteFromListOfFollowingInDb(String user) throws SQLException {
@@ -129,5 +150,6 @@ public final class Database {
 
         return diffInHours;
     }
+
 
 }

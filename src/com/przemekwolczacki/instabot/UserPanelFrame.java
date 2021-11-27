@@ -7,8 +7,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class UserPanelFrame {
     public static JFrame userPanelFrame;
@@ -138,27 +137,35 @@ public class UserPanelFrame {
         });
 
         stopButton.addActionListener(e -> {
-            try {
-                sw1.cancel(true);
-                sw1 = null;
-                SetInfoPoolLabel();
-                EventLogger.CancelAddToPoolMessage(eventLogArea);
-            } catch(Exception c){}
+            if(sw1 != null){
+                try {
+                    sw1.cancel(true);
+                    sw1 = null;
+                    SetInfoPoolLabel();
+                    EventLogger.CancelAddToPoolMessage(eventLogArea);
+                } catch(Exception c){}
+            }
+            else if(sw2 != null) {
+                try {
+                    sw2.cancel(true);
+                    sw2 = null;
+                    SetInfoRemoveLabels();
+                    EventLogger.CancelRemoveFollowsMessage(eventLogArea);
+                } catch (Exception c) {}
+            }
+            else if(sw3 != null) {
+                try {
+                    sw3.cancel(true);
+                    sw3 = null;
+                    SetInfoFollowsLabel();
+                    SetInfoLikesLabel();
+                    EventLogger.CancelWorkWithPoolMessage(eventLogArea);
+                } catch (Exception c) {}
+            }
+            else {
+                EventLogger.NoActivitiesToStop(eventLogArea);
+            }
 
-            try {
-                sw2.cancel(true);
-                sw2 = null;
-                SetInfoRemoveLabels();
-                EventLogger.CancelRemoveFollowsMessage(eventLogArea);
-            } catch(Exception c){}
-
-            try {
-                sw3.cancel(true);
-                sw3 = null;
-                SetInfoFollowsLabel();
-                SetInfoLikesLabel();
-                EventLogger.CancelWorkWithPoolMessage(eventLogArea);
-            } catch(Exception c){}
         });
     }
 
@@ -189,38 +196,17 @@ public class UserPanelFrame {
         infoPoolLabel.paintImmediately(infoPoolLabel.getVisibleRect());
     }
 
-    /*
-
-    -
-    -
-    -
-    -
-    -
-
-     */
-
     public void DownloadSomeonesFollowers() throws InterruptedException, SQLException {
         url = linkToProfileField.getText();
-
         Chrome.GoToURL(url);
 
-        double someonesFollowers = Chrome.CountSomeonesFollowers();
+        double someonesFollowers = Chrome.GetFollowersNumberDouble();
 
-        Chrome.driver.findElement(By.xpath("/html/body/div[1]/section/main/div/header/section/ul/li[2]/a")).click();
-        Bot.ActionPause(3);
-
-        var fBody = Chrome.driver.findElement(By.xpath("//div[@class='isgrP']"));
-        Bot.ActionPause(3);
-
-        double scroll = 0.0;
-        while (scroll < someonesFollowers) {
-            Chrome.js.executeScript("arguments[0].scrollTop = arguments[0].scrollHeight;", fBody);
-            Bot.ActionPause(5);
-            scroll += 1.0;
-        }
-
-        var buttons = Chrome.driver.findElements(By.className("sqdOP"));
-        var users = Chrome.driver.findElements(By.className("FPmhX"));
+        Chrome.FollowersListClick();
+        WebElement fBody = Chrome.FocusFollowersList();
+        Chrome.ScrollList(fBody, someonesFollowers);
+        List<WebElement> buttons = Chrome.GetButtonsFromList();
+        List<WebElement> users = Chrome.GetUsernamesFromList();
 
         int i = 0;
         for (WebElement user : users) {
@@ -243,27 +229,15 @@ public class UserPanelFrame {
 
     public void ClearObservationList() throws SQLException {
         url = "https://www.instagram.com/przemek_wolczi/";
-
         Chrome.GoToURL(url);
 
-        Bot.ActionPause(3);
+        double iamFollowing = Chrome.GetFollowingNumberDouble();
 
-        Chrome.driver.findElement(By.xpath("/html/body/div[1]/section/main/div/header/section/ul/li[3]/a")).click();
-        double iamFollowing = Chrome.CountHowManyPeopleIamFollowing();
-        Bot.ActionPause(3);
-
-        var fBody = Chrome.driver.findElement(By.xpath("//div[@class='isgrP']"));
-
-        double scroll = 0.0;
-        while (scroll < iamFollowing)
-        {
-            Chrome.js.executeScript("arguments[0].scrollTop = arguments[0].scrollHeight;", fBody);
-            Bot.ActionPause(1);
-            scroll += 1.0;
-        }
-
-        var buttons = Chrome.driver.findElements(By.className("sqdOP"));
-        var users = Chrome.driver.findElements(By.className("FPmhX"));
+        Chrome.FollowingListClick();
+        WebElement fBody = Chrome.FocusFollowersList();
+        Chrome.ScrollList(fBody, iamFollowing);
+        List<WebElement> buttons = Chrome.GetButtonsFromList();
+        List<WebElement> users = Chrome.GetUsernamesFromList();
 
         int i = 1;
         for (WebElement user : users) {
@@ -271,15 +245,14 @@ public class UserPanelFrame {
             {
                 if (Database.CheckDurationOfObservation(user.getText()) >= 72)
                 {
-                    buttons.get(i).click();
-                    Bot.ActionPause(5);
+                    buttons.get(i).click(); Bot.ActionPause(30);
 
-                    Chrome.driver.findElement(By.xpath("//button[contains(text(),'Przestań obserwować')]")).click();
+                    Chrome.EndFollowingButtonClick();
+                    SetInfoRemoveLabels();
 
                     Database.DeleteFromListOfFollowingInDb(user.getText());
 
-                    eventLogArea.append("[" + DateModeler.GetTimeOfDay() + "] Przestano obserwować " + user.getText() + "\n");
-                    Bot.ActionPause(5);
+                    EventLogger.DeleteObservationMessage(eventLogArea, user.getText()); Bot.ActionPause(30);
                 }
             }
             i = i + 1;
@@ -287,7 +260,7 @@ public class UserPanelFrame {
     }
 
     public void WorkWithPool() throws SQLException {
-        Database.rs_pom = Database.stmt_pom.executeQuery("SELECT * FROM pool");
+        Database.rs_pom = Database.GetUsersFromPool();
 
         followsCounter = Database.CheckTodayFollows();
 
@@ -295,19 +268,16 @@ public class UserPanelFrame {
         {
 
             String url = Database.rs_pom.getString("href");
-
-            Chrome.GoToURL(url); Bot.ActionPause(3);
-
             String user = Database.rs_pom.getString("nick");
 
-            Database.stmt.execute( "DELETE FROM pool WHERE nick='" + user + "'");
+            Chrome.GoToURL(url);
+
+            Database.DeleteUserFromPool(user);
             SetInfoPoolLabel();
 
-            Database.rs = Database.stmt.executeQuery("SELECT count(1) FROM dontfollow WHERE nick='" + user + "'");
-            Database.rs.next();
-            int donotfollow = Database.rs.getInt("count(1)");
+            int skipAccount = Database.HasAccountEverBeenVisited(user);
 
-            if (donotfollow == 0)
+            if (skipAccount == 0)
             {
                 try
                 {
@@ -317,37 +287,25 @@ public class UserPanelFrame {
                 {
                     try
                     {
-                        String check1 = Chrome.driver.findElement(By.xpath("//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a/span")).getAttribute("title");
-                        check1 = check1.replaceAll("\\s+","");
+                        int limit1 = Chrome.GetFollowersNumberInteger();
+                        int limit2 = Chrome.GetFollowingNumberInteger();
 
-                        String check2 = Chrome.driver.findElement(By.xpath("//*[@id='react-root']/section/main/div/header/section/ul/li[3]/a/span")).getText();
-                        check2 = check2.replaceAll("\\s+","");
-
-                        if ((Integer.parseInt(check1) < 1000) && ((Integer.parseInt(check2) < 1000) && (Integer.parseInt(check2) > 100)))
+                        if ((limit1 < 1000) && ((limit2 < 1000) && (limit2 > 100)))
                         {
                             try
                             {
-                                Chrome.driver.findElement(By.className("v1Nh3")).click();
-                                Bot.ActionPause(20);
-
-                                Chrome.driver.findElement(By.xpath("//span[contains(@class,'fr66n')]//button[contains(@type,'button')]")).click();
+                                Chrome.LikePhoto();
                                 Database.AddStatFollowOrLike("like", user);
                                 EventLogger.LikeUserMessage(eventLogArea, user);
-                                SetInfoLikesLabel();
-                                Bot.ActionPause(20);
+                                SetInfoLikesLabel(); Bot.ActionPause(20);
 
-                                Chrome.driver.findElement(By.xpath("/html/body/div[6]/div[3]/button")).click();
-                                Bot.ActionPause(20);
+                                Chrome.CloseWindowWithPhoto(); Bot.ActionPause(20);
 
-                                Chrome.driver.findElement(By.xpath("//button[normalize-space()='Obserwuj']")).click();
-                                Database.stmt.execute("INSERT INTO followed(nick, date) VALUES('" + user + "', '" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "')");
-                                Database.stmt.execute("INSERT INTO dontfollow(id, nick) VALUES(NULL, '" + user + "')");
+                                Chrome.StartFollowingButtonClick();
                                 Database.AddStatFollowOrLike("follow", user);
                                 EventLogger.FollowUserMessage(eventLogArea, user);
                                 SetInfoFollowsLabel();
-                                SetInfoRemoveLabels();
-
-                                Bot.ActionPause(20);
+                                SetInfoRemoveLabels(); Bot.ActionPause(20);
                             }
                             catch(Exception ex) {
                                 System.out.println(ex.getMessage());

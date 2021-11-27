@@ -35,11 +35,6 @@ public class EventLogger {
         eventLogArea.update(eventLogArea.getGraphics());
     }
 
-    public static void SomethingWentWrongMessage(JTextArea eventLogArea){
-        eventLogArea.append("========= [" + DateModeler.GetTimeOfDay() + "] Coś poszło nie tak. Nie można dodać do puli \n");
-
-        eventLogArea.update(eventLogArea.getGraphics());
-    }
 
     public static void EndOfAddingToDbMessage(JTextArea eventLogArea){
         eventLogArea.append("========= [" + DateModeler.GetTimeOfDay() + "] Zakończono dodawanie linków do profili w bazie \n");
@@ -55,6 +50,12 @@ public class EventLogger {
 
     public static void NoOneToRemoveMessage(JTextArea eventLogArea){
         eventLogArea.append("========= [" + DateModeler.GetTimeOfDay() + "] Aktualnie nie obserwujesz nikogo dłużej niż 3 dni \n");
+
+        eventLogArea.update(eventLogArea.getGraphics());
+    }
+
+    public static void DeleteObservationMessage(JTextArea eventLogArea, String user){
+        eventLogArea.append("[" + DateModeler.GetTimeOfDay() + "] Przestano obserwować " + user + "\n");
 
         eventLogArea.update(eventLogArea.getGraphics());
     }
@@ -91,6 +92,12 @@ public class EventLogger {
 
     public static void CancelAddToPoolMessage(JTextArea eventLogArea){
         eventLogArea.append("xxxxxxxxx [" + DateModeler.GetTimeOfDay() + "] Przerwano dodawanie linków do kont do puli\n");
+
+        eventLogArea.update(eventLogArea.getGraphics());
+    }
+
+    public static void NoActivitiesToStop(JTextArea eventLogArea){
+        eventLogArea.append("xxxxxxxxx [" + DateModeler.GetTimeOfDay() + "] Żadna funkcja nie jest aktualnie uruchomiona\n");
 
         eventLogArea.update(eventLogArea.getGraphics());
     }
