@@ -1,0 +1,179 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="untitled104:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/untitled104_jar</output-path>
+    <root id="archive" name="untitled104.jar">
+      <element id="module-output" name="untitled104" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/jackson-annotations-2.13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/guava-31.0.1-jre.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../mysql_connector/mysql-connector-java-8.0.28.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-sdk-common-1.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/jtoml-2.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/commons-exec-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-handler-proxy-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-codec-socks-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-transport-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-semconv-1.9.0-alpha.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/byte-buddy-1.12.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/slf4j-api-1.7.32.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-api-1.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-sdk-trace-1.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/jackson-databind-2.13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-sdk-1.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/jcommander-1.81.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-transport-native-unix-common-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-transport-native-epoll-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/failureaccess-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-buffer-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/failsafe-2.4.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/async-http-client-netty-utils-2.12.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-sdk-logs-1.9.0-alpha.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-chromium-driver-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-http-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-opera-driver-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-java-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-firefox-driver-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-remote-driver-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-devtools-v95-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-devtools-v94-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-devtools-v96-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-chrome-driver-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-firefox-xpi-driver-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-ie-driver-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-api-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-devtools-v85-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-support-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-safari-driver-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-json-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-edge-driver-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-java-4.1.0.zip" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-api-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-http-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-java-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-json-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-support-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-ie-driver-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-edge-driver-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-devtools-v85-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-devtools-v94-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-devtools-v95-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-devtools-v96-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-opera-driver-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-chrome-driver-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-remote-driver-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-safari-driver-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-firefox-driver-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-chromium-driver-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/selenium-firefox-xpi-driver-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../mysql_connector/protobuf-java-3.11.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-sdk-extension-autoconfigure-spi-1.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/reactive-streams-1.0.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/auto-service-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-resolver-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-exporter-logging-1.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/async-http-client-2.12.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-reactive-streams-2.0.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/auto-service-annotations-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-handler-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-codec-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/error_prone_annotations-2.7.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-codec-http-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/j2objc-annotations-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-sdk-metrics-1.9.0-alpha.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/checker-qual-3.12.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-context-1.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-transport-native-kqueue-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-api-metrics-1.9.0-alpha.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/auto-common-1.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/jakarta.activation-1.2.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/jsr305-3.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/opentelemetry-sdk-extension-autoconfigure-1.9.0-alpha.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/jackson-core-2.13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Java Selenium/lib/netty-common-4.1.69.Final.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/jimage.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-utility-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-console-l1-2-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-math-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/net.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-environment-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/lcms.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-namedpipe-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/harfbuzz.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-handle-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-time-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/jdwp.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-datetime-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/j2pcsc.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-profile-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/zip.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/jaas.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/management_agent.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-console-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/nio.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-errorhandling-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/le.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-processthreads-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/attach.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/sunmscapi.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/jawt.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/msvcp140.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/management_ext.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-timezone-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-debug-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/mlib_image.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-libraryloader-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-file-l1-2-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/dt_socket.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-string-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/awt.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/vcruntime140.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-processthreads-l1-1-1.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-heap-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-memory-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-synch-l1-2-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/management.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/verify.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/jsound.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/javajpeg.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-sysinfo-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/javaaccessbridge.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-convert-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-conio-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/dt_shmem.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/java.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-multibyte-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/vcruntime140_1.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-string-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-stdio-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-filesystem-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-util-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/sspi_bridge.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/windowsaccessbridge-64.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-locale-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/jli.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/fontmanager.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/instrument.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/j2pkcs11.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-file-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/splashscreen.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-synch-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-heap-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/saproc.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-localization-l1-2-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/prefs.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-interlocked-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-runtime-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/rmi.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-process-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-rtlsupport-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-file-l2-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/jpackage.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/j2gss.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/w2k_lsa_auth.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/rmid.exe" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/freetype.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/ucrtbase.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-core-processenvironment-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-16/bin/api-ms-win-crt-private-l1-1-0.dll" />
+    </root>
+  </artifact>
+</component>
