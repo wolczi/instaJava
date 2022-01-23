@@ -33,9 +33,6 @@ public class UserPanelFrame {
     public SwingWorker sw2 = null;
     public SwingWorker sw3 = null;
 
-    int[] statCounters;
-    int followsCounter;
-
     public UserPanelFrame() throws SQLException {
         InitializeFrame();
 
@@ -65,16 +62,22 @@ public class UserPanelFrame {
                 @Override
                 protected Object doInBackground() {
                     try {
-                        EventLogger.AddingToDbMessage(eventLogArea);
+                        if(linkToProfileField.getText().equals("https://www.instagram.com/link_do_profilu/")){
+                            EventLogger.WrongLinkToProfile(eventLogArea);
+                        }
+                        else{
+                            EventLogger.AddingToDbMessage(eventLogArea);
 
-                        DownloadSomeonesFollowers();
-                        SetInfoPoolLabel();
+                            DownloadSomeonesFollowers();
+                            SetInfoPoolLabel();
+
+                            EventLogger.EndOfAddingToDbMessage(eventLogArea);
+                        }
                     } catch (InterruptedException | SQLException ex) {
                         ex.printStackTrace();
                     }
-                    EventLogger.EndOfAddingToDbMessage(eventLogArea);
 
-                    return 1;
+                    return sw1= null;
                 }
             };
 
@@ -88,10 +91,12 @@ public class UserPanelFrame {
                     try {
                         if (Database.moreThan3Days > 0) {
 
-                                EventLogger.StartDeleteObservationsMessage(eventLogArea);
+                            EventLogger.StartDeleteObservationsMessage(eventLogArea);
 
-                                ClearObservationList();
-                                SetInfoRemoveLabels();
+                            ClearObservationList();
+                            SetInfoRemoveLabels();
+
+                            EventLogger.EndDeleteObservationsMessage(eventLogArea);
                         }
                         else {
                             EventLogger.NoOneToRemoveMessage(eventLogArea);
@@ -99,9 +104,8 @@ public class UserPanelFrame {
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
-                    EventLogger.EndDeleteObservationsMessage(eventLogArea);
 
-                    return 1;
+                    return sw2 = null;
                 }
             };
 
@@ -112,24 +116,27 @@ public class UserPanelFrame {
                 @Override
                 protected Object doInBackground() {
                     try {
-                        EventLogger.StartFollowLikePoolMessage(eventLogArea);
+                        int todayFollowsCounter = Database.CheckTodayFollows();
+                        int accountsInPool = Database.CountProfilesInPool();
 
-                        int followsCounter = Database.CheckTodayFollows();
-
-                        if (followsCounter < 200) {
-                            if (Database.CountProfilesInPool() > 0) WorkWithPool();
-                            else EventLogger.EndFollowLikePoolMessage(eventLogArea, 0);
+                        if (accountsInPool > 0) {
+                            if(todayFollowsCounter < 200){
+                                EventLogger.StartFollowLikePoolMessage(eventLogArea);
+                                WorkWithPool();
+                                EventLogger.EndFollowLikePoolMessage(eventLogArea, 2);
+                            }
+                            else{
+                                EventLogger.EndFollowLikePoolMessage(eventLogArea, 1);
+                            }
                         }
-                        else
-                        {
-                            EventLogger.EndFollowLikePoolMessage(eventLogArea, 1);
+                        else{
+                            EventLogger.EndFollowLikePoolMessage(eventLogArea, 0);
                         }
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
-                    EventLogger.EndFollowLikePoolMessage(eventLogArea, 2);
 
-                    return 1;
+                    return sw3 = null;
                 }
             };
 
@@ -182,7 +189,7 @@ public class UserPanelFrame {
     }
 
     public void SetInfoRemoveLabels() throws SQLException {
-        statCounters = Database.CountObservationsToRemove();
+        int[] statCounters = Database.CountObservationsToRemove();
         infoRemoveLabel2.setText("ogólnie: " + statCounters[0]);
         infoRemoveLabel3.setText("dłużej niż trzy dni: " + statCounters[1]);
 
@@ -262,7 +269,7 @@ public class UserPanelFrame {
     public void WorkWithPool() throws SQLException {
         Database.rs_pom = Database.GetUsersFromPool();
 
-        followsCounter = Database.CheckTodayFollows();
+        int followsCounter = Database.CheckTodayFollows();
 
         while (Database.rs_pom.next() && followsCounter < 200)
         {

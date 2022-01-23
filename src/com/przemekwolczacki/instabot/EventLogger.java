@@ -73,7 +73,7 @@ public class EventLogger {
     }
 
     public static void LikeUserMessage(JTextArea eventLogArea, String user){
-        eventLogArea.append("[" + DateModeler.GetTimeOfDay() + "] Polubiono post " + user + " \n");
+        eventLogArea.append("[" + DateModeler.GetTimeOfDay() + "] Polubiono post użytkownika " + user + " \n");
 
         eventLogArea.update(eventLogArea.getGraphics());
     }
@@ -98,6 +98,12 @@ public class EventLogger {
 
     public static void NoActivitiesToStop(JTextArea eventLogArea){
         eventLogArea.append("xxxxxxxxx [" + DateModeler.GetTimeOfDay() + "] Żadna funkcja nie jest aktualnie uruchomiona\n");
+
+        eventLogArea.update(eventLogArea.getGraphics());
+    }
+
+    public static void WrongLinkToProfile(JTextArea eventLogArea){
+        eventLogArea.append("xxxxxxxxx [" + DateModeler.GetTimeOfDay() + "] Nie zmieniłeś przykładowego linku do profilu\n");
 
         eventLogArea.update(eventLogArea.getGraphics());
     }
